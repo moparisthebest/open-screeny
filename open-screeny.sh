@@ -13,9 +13,10 @@ set -e # exit on error
 [ -z "$puush_api_key" ] && export puush_api_key='' # find API key here: http://puush.me/account/settings
 [ -z "$imgur_api_key" ] && export imgur_api_key='486690f872c678126a2c09a9e196ce1b' # nabbed from here: https://github.com/dave1010/scripts/blob/master/shoot
 [ -z "$imgup_path" ]    && export imgup_path='' # example: 'ssh user@host ~/imgup.sh ~/htdocs/s http://host/s png'
+[ -z "$http_upload_path" ]    && export http_upload_path='' # example: '~/bin/http_upload.sh' without quotes where your required variables are already exported
 
 # if these are empty, go with defaults we know to exist and work without configuration
-[ -z "$upload" ] && export upload='imgur' # must be one of 'puush', 'imgur', or 'imgup'
+[ -z "$upload" ] && export upload='imgur' # must be one of 'puush', 'imgur', 'imgup', or 'http_upload'
 [ -z "$shorturl" ] && export shorturl=''  # must be one of 'tinyurl', 'b1tit', or '' (no shorturl)
 
 filename="$1" # if there is no filename to upload, we take a screenshot and upload that
@@ -37,6 +38,11 @@ function upload_puush {
 function upload_imgup {
     [ -z "$imgup_path" ] && echo '$imgup_path is empty, cannot upload!' && return
     $imgup_path < "$1"
+}
+
+function upload_http_upload {
+    [ -z "$http_upload_path" ] && echo '$imgup_path is empty, cannot upload!' && return
+    "$http_upload_path" "$1"
 }
 
 ####################################################################################################################################
