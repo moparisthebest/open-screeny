@@ -10,7 +10,7 @@ set -e
 [ -z "$http_upload_file_size_limit" ] && http_upload_file_size_limit=$((100 * 1024 * 1024)) # bytes, default to 100 * 1024 * 1024 = 100 MB
 
 encrypt=0
-[ -z "$http_upload_encrypt" ] && encrypt=$http_upload_encrypt
+[ $http_upload_encrypt -eq 1 2>/dev/null ] && encrypt=1 || true
 [ "$1" == '-e' ] && encrypt=1 && shift
 [ "$2" == '-e' ] && encrypt=1
 
@@ -40,6 +40,6 @@ get_url="${http_upload_url}${uuid}/${base_name}"
 
 curl -f -T "$file_to_upload" "${get_url}?v=${hmac_secret}"
 
-echo -n "${get_url}${tag}"
+echo "${get_url}${tag}"
 
-[ $encrypt -eq 1 ] && rm "$file_to_upload"
+[ $encrypt -eq 1 ] && rm "$file_to_upload" || true
