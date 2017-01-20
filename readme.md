@@ -25,6 +25,8 @@ Mainly meant to be used for images from scripts like open-screeny.sh, it can rea
 
 Required dependencies are openssl, curl, and standard unix utilities stat, awk, and basename
 
+Optional dependencies include aesgcm from [ImageDownloader][6] which is used to encrypt files just like Conversations and gajim do with http_upload before upload. Either set the variable http_upload_encrypt to 1 or pass -e to the script as the first or second argument to enable this encryption.
+
 imgup.sh
 ------------
 This script reads a file from stdin, and moves it to a certain directory with the shortest name possible that doesn't conflict based on the sha1sum, then echos the URL the file will be available at.
@@ -47,3 +49,4 @@ nginx_http_upload.php is licensed seperately as mentioned at the top of the file
 [4]: http://b1t.it/
 [5]: https://github.com/Hidendra/puush-api
 [6]: https://modules.prosody.im/mod_http_upload_external.html
+[7]: https://github.com/moparisthebest/ImageDownloader
