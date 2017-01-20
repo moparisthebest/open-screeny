@@ -25,7 +25,7 @@ Mainly meant to be used for images from scripts like open-screeny.sh, it can rea
 
 Required dependencies are openssl, curl, and standard unix utilities stat, awk, and basename
 
-Optional dependencies include aesgcm from [ImageDownloader][6] which is used to encrypt files just like Conversations and gajim do with http_upload before upload. Either set the variable http_upload_encrypt to 1 or pass -e to the script as the first or second argument to enable this encryption.
+Optional dependencies include aesgcm from [ImageDownloader][7] which is used to encrypt files just like Conversations and gajim do with http_upload before upload. Either set the variable http_upload_encrypt to 1 or pass -e to the script as the first or second argument to enable this encryption.
 
 imgup.sh
 ------------
